@@ -1,6 +1,6 @@
 version: '3'
 services: 
-  xrayr: 
+  v2rayS: 
     image: ghcr.io/thank243/v2rays:master
     volumes:
       - ./config:/etc/v2rayS/
