@@ -1,0 +1,8 @@
+version: '3'
+services: 
+  xrayr: 
+    image: ghcr.io/thank243/v2rays:master
+    volumes:
+      - ./config:/etc/v2rayS/
+    restart: always
+    network_mode: host
