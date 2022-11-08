@@ -1,11 +1,11 @@
 Log:
-  Level: error # Log level: none, error, warning, info, debug
+  Level: warning # Log level: none, error, warning, info, debug
   AccessPath: # /etc/v2rayS/access.Log
   ErrorPath: # /etc/v2rayS/error.log
-DnsConfigPath: /etc/v2rayS/dns.json # /etc/v2rayS/dns.json # Path to dns config, check https://guide.v2fly.org/basics/dns.html for help
-RouteConfigPath: /etc/v2rayS/route.json # /etc/v2rayS/route.json # Path to route config, check https://guide.v2fly.org/basics/routing/basics_routing.html for help
-InboundConfigPath: /etc/v2rayS/custom_inbound.json # /etc/v2rayS/custom_inbound.json # Path to custom inbound config, check https://www.v2fly.org/v5/config/inbound.html for help
-OutboundConfigPath: /etc/v2rayS/custom_outbound.json # /etc/v2rayS/custom_outbound.json # Path to custom outbound config, check https://www.v2fly.org/v5/config/outbound.html for help
+DnsConfigPath: # /etc/v2rayS/dns.json # Path to dns config, check https://guide.v2fly.org/basics/dns.html for help
+RouteConfigPath: # /etc/v2rayS/route.json # Path to route config, check https://guide.v2fly.org/basics/routing/basics_routing.html for help
+InboundConfigPath: # /etc/v2rayS/custom_inbound.json # Path to custom inbound config, check https://www.v2fly.org/v5/config/inbound.html for help
+OutboundConfigPath: # /etc/v2rayS/custom_outbound.json # Path to custom outbound config, check https://www.v2fly.org/v5/config/outbound.html for help
 ConnectionConfig:
   Handshake: 4 # Handshake time limit, Second
   ConnIdle: 30 # Connection idle time limit, Second
@@ -13,7 +13,7 @@ ConnectionConfig:
   DownlinkOnly: 4 # Time limit when the connection is closed after the uplink is closed, Second
   BufferSize: 64 # The internal cache size of each connection, kB 
 Nodes:
-  - PanelType: "V2board" # Panel type: V2board. PMpanel, Proxypanel, V2RaySocks
+  - PanelType: "V2board" # Panel type: V2board, PMpanel, Proxypanel, V2RaySocks
     ApiConfig:
       ApiHost: "https://example.com"
       ApiKey: "YOUR TOKEN"
@@ -22,7 +22,7 @@ Nodes:
       Timeout: 30 # Timeout for the api request
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
-      RuleListPath: /etc/v2rayS/rulelist # /etc/v2rayS/rulelist Path to local rulelist file
+      RuleListPath: # /etc/v2rayS/rulelist Path to local rulelist file
     ControllerConfig:
       ListenIP: 0.0.0.0 # IP address you want to listen
       SendIP: 0.0.0.0 # IP address you want to send package
@@ -35,6 +35,12 @@ Nodes:
         WarnTimes: 0 # After (WarnTimes) consecutive warnings, the user will be limited. Set to 0 to punish overSpeed user immediately.
         LimitSpeed: 0 # The speedlimit of a limited user (unit: mbps)
         LimitDuration: 0 # How many minutes will the limiting last (unit: minute)
+      GlobalDeviceLimitConfig:
+        Limit: 0 # The global device limit of a user, 0 means disable
+        RedisAddr: 127.0.0.1:6379 # The redis server address
+        RedisPassword: YOUR PASSWORD # Redis password
+        RedisDB: 0 # Redis DB
+        Expiry: 60 # Expiry time (minute)
       FallBackConfigs: # Support multiple fallbacks
         - Alpn: # Alpn, Empty for any
           Path: # HTTP PATH, Empty for any
