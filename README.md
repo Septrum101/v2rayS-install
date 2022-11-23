@@ -1,6 +1,7 @@
 # v2rayS-install
 
-# 只推荐 Docker compose 安装
+# 安装方式
+## 1. docker-compose
 0. 安装docker-compose: 
 ```
 curl -fsSL https://get.docker.com | bash -s docker
@@ -12,7 +13,6 @@ chmod +x /usr/local/bin/docker-compose
 3. 编辑config。
 配置文件基本格式如下，Nodes下可以同时添加多个面板，多个节点配置信息，只需添加相同格式的Nodes item即可。
 4. 启动docker：`docker-compose up -d`
-
 ```yaml
 Log:
   Level: error # Log level: none, error, warning, info, debug
@@ -72,4 +72,8 @@ Nodes:
 ```
 docker-compose pull
 docker-compose up -d
+```
+## 2. docker
+```
+docker pull ghcr.io/thank243/v2rays:master && docker run --restart=always --name v2rays -d -v ${PATH_TO_CONFIG}/config.yml:/etc/v2rayS/config.yml --network=host ghcr.io/thank243/v2rays:master
 ```
